@@ -4,7 +4,7 @@ namespace CMW\Controller\SimpleCookies;
 
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Package\AbstractController;
-use CMW\Manager\Theme\ThemeManager;
+use CMW\Manager\Theme\Loader\ThemeLoader;
 use function setcookie;
 
 class SimpleCookiesController extends AbstractController
@@ -124,7 +124,7 @@ class SimpleCookiesController extends AbstractController
     public function showCookieConsent(): void
     {
         if (!$this->hasClientConsent()) {
-            $currentThemeName = ThemeManager::getInstance()->getCurrentTheme()->name();
+            $currentThemeName = ThemeLoader::getInstance()->getCurrentTheme()->name();
 
             $path = EnvManager::getInstance()->getValue('DIR')
                 . "Public/Themes/$currentThemeName/Views/SimpleCookies/cookies.banner.php";
